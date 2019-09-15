@@ -1,0 +1,19 @@
+body {
+    font: caption;
+    padding: 10px;
+}
+
+.app_container {
+    max-height: 100vh;
+    position: relative;
+}
+
+.app {
+    margin: 0;
+    padding: 10px;
+    background: yellow;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid grey;
+    border-radius: 5px;
+}

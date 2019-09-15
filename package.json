@@ -1,0 +1,30 @@
+{
+  "name": "coffee_break_npc_maker",
+  "version": "1.0.0",
+  "description": "application and parser for dialogue objects",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:dev": "DEV=true electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguelpel/coffee_break_npc_maker.git"
+  },
+  "keywords": [
+    "parser",
+    "coffee_break",
+    "dialogue",
+    "chat"
+  ],
+  "author": "Miguel Pelleterat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miguelpel/coffee_break_npc_maker/issues"
+  },
+  "homepage": "https://github.com/miguelpel/coffee_break_npc_maker#readme",
+  "devDependencies": {
+    "electron": "^6.0.9"
+  }
+}
