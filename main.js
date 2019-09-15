@@ -2,9 +2,12 @@
 
 const { app, BrowserWindow } = require('electron')
 
+const { webContents, ipcRenderer } = require('electron')
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
+
 
 function createWindow () {
   // Create the browser window.
@@ -24,6 +27,10 @@ function createWindow () {
     console.log("starting dev environment")
     win.webContents.openDevTools()
   }
+
+  win.webContents.on('dom-ready', () => {
+        console.log("dom ready")
+  });
 
   // Emitted when the window is closed.
   win.on('closed', () => {

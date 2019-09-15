@@ -11,9 +11,54 @@ body {
 .app {
     margin: 0;
     padding: 10px;
-    background: yellow;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid grey;
     border-radius: 5px;
+}
+
+.app h4 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.character_controller {
+    /*  */
+}
+
+.character_name {
+    margin-bottom: 5px;
+}
+
+.app button {
+    background: black;
+    color: white;
+    font-size: 1em;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.app button:hover {
+    background: #cdcdcd;
+    color: black;
+}
+
+.export_container {
+    margin-top: 8px;
+    display:flex;
+    justify-content: flex-end;
+}
+
+#script_window {
+    margin: 0;
+    padding: 0;
+    padding-right: 12px;
+}
+
+#script_input {
+    font-size: 1em;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
 }
