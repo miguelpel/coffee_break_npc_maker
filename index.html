@@ -11,14 +11,14 @@
             <h4>Coffee_Break npc creator</h4>
             <hr />
             <div class='character_controller'>
+                <div class='character_buttons'>
+                    <button>Create Character</button>
+                    <button>Load Character</button>
+                </div>
                 <div class='character_name'>
                     <!-- character name (format: snake_case) -->
                     Character Name:
                     <input id="character_name"/>
-                </div>
-                <div class='character_buttons'>
-                    <button>Create Character</button>
-                    <button>Load Character</button>
                 </div>
                 <!-- message (warnings) -->
                 <div id='messages_view'>
@@ -26,9 +26,60 @@
                 </div>
             </div>
             <hr />
+            <!-- quirks -->
+            <div>
+                Quirks
+                <br />
+                <div class="quirk_input_container">
+                    <div class="quirk_window">
+                        Normal
+                        <br />
+                        start:
+                        <textarea class="quirk_input" id="normal_quirk_input_start" name="Script" rows="5"></textarea>
+                        comma:
+                        <textarea class="quirk_input" id="normal_quirk_input_comma" name="Script" rows="5"></textarea>
+                        end:
+                        <textarea class="quirk_input" id="normal_quirk_input_end" name="Script" rows="5"></textarea>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="quirk_window">
+                        Aroused
+                        <br />
+                        start:
+                        <textarea class="quirk_input" id="aroused_quirk_input_start" name="Script" rows="5"></textarea>
+                        comma:
+                        <textarea class="quirk_input" id="aroused_quirk_input_comma" name="Script" rows="5"></textarea>
+                        end:
+                        <textarea class="quirk_input" id="aroused_quirk_input_end" name="Script" rows="5"></textarea>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="quirk_window">
+                        Trusting
+                        <br />
+                        start:
+                        <textarea class="quirk_input" id="trusting_quirk_input_start" name="Script" rows="5"></textarea>
+                        comma:
+                        <textarea class="quirk_input" id="trusting_quirk_input_comma" name="Script" rows="5"></textarea>
+                        end:
+                        <textarea class="quirk_input" id="trusting_quirk_input_end" name="Script" rows="5"></textarea>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="quirk_window">
+                        Angry
+                        <br />
+                        start:
+                        <textarea class="quirk_input" id="angry_quirk_input_start" name="Script" rows="5"></textarea>
+                        comma:
+                        <textarea class="quirk_input" id="angry_quirk_input_comma" name="Script" rows="5"></textarea>
+                        end:
+                        <textarea class="quirk_input" id="angry_quirk_input_end" name="Script" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <hr />
             <!-- script window -->
             <div id="script_window">
-                script
+                Script
                 <br />
                 <textarea id="script_input" name="Script" rows="20"></textarea>
             </div>

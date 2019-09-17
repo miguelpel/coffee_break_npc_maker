@@ -8,6 +8,7 @@ const { webContents, ipcRenderer } = require('electron')
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
+let current_character // to keet the current character
 
 function createWindow () {
   // Create the browser window.
