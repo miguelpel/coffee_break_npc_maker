@@ -88,6 +88,39 @@
             </div>
         </div>
     </div>
-    <!-- <script src="resize.js"></script> -->
+    <script>
+        const {ipcRenderer} = require('electron')
+        // get all the textarea ids and display them
+
+        const inputsIds = []
+
+        inputsIds.push("character_name")
+        document.querySelectorAll('textarea').forEach(area => inputsIds.push(area.id))
+
+        console.log(inputsIds)
+
+        // for inputId in inputsIds
+        // add event listener onChange ('onChange', onInputChange)
+        // onInputChange(e) => {id=e.target.id value = e.target.value}
+        // send id and value to main process
+
+        function onInputChange(e) { // get triggered ONLY when you exit the input field
+            e.preventDefault()
+            const value = e.target.value
+            const inputId = e.target.id
+            console.log(e.target.id)
+            console.log(e.target.value)
+            ipcRenderer.send('inputChange', {value, inputId})
+        }
+
+        function onFocus(e) {
+            console.log('focus')
+        }
+
+        const nameInput = document.getElementById(inputsIds[0])
+        nameInput.addEventListener('change', onInputChange)
+        nameInput.addEventListener('focus', onFocus)
+
+    </script>
   </body>
 </html>
