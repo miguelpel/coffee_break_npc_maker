@@ -1,5 +1,6 @@
 1 - get input from textarea
 2 - create store and persistent data (JSON) => unfold
+2.1 - save and retrieve one character
 2.2 - set a timer to send the data every something?
 2.3 - create a modal with spinner when loading
 2.4 - get the data from the store into the main window:

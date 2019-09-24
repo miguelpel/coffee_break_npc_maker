@@ -20,7 +20,7 @@ class DataStore extends Store {
         return this.characters[characterName] === 'undefined'
     }
 
-    getCharacter(characterName) {
+    getCharacterByName(characterName) {
         return this.characters[characterName]
     }
 
@@ -28,6 +28,13 @@ class DataStore extends Store {
         // get all the characters
         this.characters = this.get('characters') || {}
         return this
+    }
+
+    getAllCharacterNames() {
+        const nameArr = [];
+        console.log(Object.keys(this.characters))
+        Object.keys(this.characters).forEach(charName => nameArr.push(charName))
+        return nameArr;
     }
 
     deleteCharacter(characterName) {

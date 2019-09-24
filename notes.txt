@@ -1,3 +1,8 @@
+!!! how to handle the CONSEQUENCES of an input on a character ?;
+- changes in the stats ot the character
+- triggers => when a character pass certains treesholds in his stats, there are responses automatically triggered
+- train of thought => a chain of answers, waiting to be told. Can be interrupted
+
 {
     name: "damian_rich",
     quirks: {
@@ -8,14 +13,22 @@
     },
     requests: {}, // for conversations between npcs.
     responses: {
-        [input1]: '', // There's only one output
-        [input2]: {condition: '', ['', '']} // multiple outputs (random??? ordered???)
+        [input1]: {answers: ['']}, // There's only one output
+        [input2]: {answers: ['', '']} // multiple outputs (random??? ordered???)
+        [input3]: {condition: '', answers: ['', ''], consequence: 'aroused+'} // multiple outputs (random??? ordered???)
+        [input3]: {condition: 'aroused >= 10', answers: ['', ''], consequence: 'trusting++'} // multiple outputs (random??? ordered???)
+        [input4]: {condition: '', answers: ['', ''], consequence: 'action:jump'} // multiple outputs (random??? ordered???)
     }
 }
 
+??? if condition, else ???? How to have this in the data model?
+
 ////////////////////////////////////////////////////////////
-input //// condition (optionnal) //// [''] (output(s)) ////
+input //// condition (optionnal) //// [''] (output(s)) /////
 + "how are you?"
+- ''
+- '' (consequence)
 - (condition) ''
-- (condition) ''
-- (condition) ''
+- (condition) '' (consequence)
+
+
