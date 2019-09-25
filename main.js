@@ -50,6 +50,19 @@ function createWindow () {
 
 }
 
+const tryAndSave = () => {
+  console.log('saving character', current_character)
+  // check if the character's name is available and not undefined
+  if (!current_character || !current_character.name) {
+    console.log('undefined character!')
+    mainWindow.webContents.send('display message', {nature: 'error', message: "There's no Character set"})
+    return false;
+  }
+  const charName = current_character.name
+  store.saveCharacter({name: charName})
+  mainWindow.webContents.send('display message', {nature: 'info', message: "Character Saved"})
+}
+
 // catch 'inputChange'
 ipcMain.on('inputChange', function(event, item) {
   if (!current_character) {
@@ -101,22 +114,10 @@ ipcMain.on('exportChar', function(event) {
 })
 
 ipcMain.on('saveChar', function(event) {
-  console.log('saving character', current_character)
-  // check if the character's name is available and not undefined
-  if (!current_character || !current_character.name) {
-    console.log('undefined character!')
-    return false;
-  }
-  const charName = current_character.name
-  store.saveCharacter({name: charName})
-  console.log("character saved")
+  tryAndSave()
 })
 
-ipcMain.on('try and save', function() {
-  console.log('try and save') // works
-  // if there's no character set, dispay warning.
-  // else, hide warning, save character, display message that the character is saved.
-})
+ipcMain.on('try and save', tryAndSave)
 
 app.on('ready', createWindow)
 

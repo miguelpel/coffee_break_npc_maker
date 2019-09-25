@@ -50,10 +50,12 @@ function tryAutoSave() {
     ipcRenderer.send('try and save')
 }
 
-function displayMessage(message, nature) {
-    // set the color of the message, according to the nature of it => warning, info, error???
-    // set the message,
-    // set it visible???
+function displayMessage(message, nature = 'warning') {
+    const color = nature === 'warning' ? '#ff9214' : nature === 'error' ? '#ff1414' : '#00ff00';
+    warningElement.style.color = color;
+    warningElement.style.borderColor = color;
+    warningElement.textContent = message;
+    warningElement.style.display = 'block';
 }
 
 /////////////// ADDING EVENT LISTENERS
@@ -69,3 +71,9 @@ exportButton.addEventListener('click', onExportButtonPressed)
 saveButton.addEventListener('click', onSaveButtonPressed)
 
 timer = setInterval(tryAutoSave, 1000)
+
+/////////////// MESSAGES FROM MAIN
+
+ipcRenderer.on('display message', function(event, item) {
+    displayMessage(item.message, item.nature)
+})
