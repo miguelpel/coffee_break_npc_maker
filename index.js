@@ -31,7 +31,7 @@ function onFocus(e) {
 }
 
 function onLoadButtonPressed(e) {
-    ipcRenderer.send('loadChar')
+    ipcRenderer.send('loadAllChars')
 }
 
 function onCreateButtonPressed(e) {
@@ -46,16 +46,43 @@ function onSaveButtonPressed(e) {
     ipcRenderer.send('saveChar')
 }
 
+function onCharacterNamePressed(name) {
+    ipcRenderer.send('loadChar', name)
+    deleteCharactersNames()
+}
+
 function tryAutoSave() {
     ipcRenderer.send('try and save')
 }
 
 function displayMessage(message, nature = 'warning') {
-    const color = nature === 'warning' ? '#ff9214' : nature === 'error' ? '#ff1414' : '#00ff00';
+    const color = nature === 'warning' ? '#ff9214' : nature === 'error' ? '#ff1414' : '#00d100';
     warningElement.style.color = color;
     warningElement.style.borderColor = color;
     warningElement.textContent = message;
     warningElement.style.display = 'block';
+}
+
+function loadCharacters(names) {
+    const ul = document.createElement('ul')
+    ul.id = 'character list'
+    const contDiv = document.getElementById('character_buttons')
+    names.forEach((name, i) => {
+        const li = document.createElement('li')
+        li.innerText = name
+        if (i + 1 !== names.length) {
+            li.style.borderBottom = '1px solid #cccccc';
+        }
+        // add event listener => onClick => load THIS character ("by name")
+        li.addEventListener('click', (e) => onCharacterNamePressed(name))
+        ul.appendChild(li)
+    })
+    contDiv.appendChild(ul)
+}
+
+function deleteCharactersNames() {
+    const ul = document.getElementById('character list')
+    ul.parentNode.removeChild(ul);
 }
 
 /////////////// ADDING EVENT LISTENERS
@@ -77,3 +104,9 @@ timer = setInterval(tryAutoSave, 1000)
 ipcRenderer.on('display message', function(event, item) {
     displayMessage(item.message, item.nature)
 })
+
+ipcRenderer.on('display characters names', function(event, item) {
+    loadCharacters(item)
+})
+
+/////////////// TEST FOR THE DIV WITH CHARS NAMES

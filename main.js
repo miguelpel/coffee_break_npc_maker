@@ -11,12 +11,12 @@ const Character = require('./Character');
 
 let mainWindow;
 let store;
-let current_character // to keet the current character;
+let current_character // to keep the current character;
 
-const state = {
-  currentCharacter: undefined,
-  loading: false
-}
+// const state = {
+//   currentCharacter: undefined,
+//   loading: false
+// }
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -37,7 +37,7 @@ function createWindow () {
         console.log("dom ready")
   });
 
-    mainWindow.on('closed', () => {
+    mainWindow.on('closed', () => { 
     mainWindow = null
   });
 
@@ -66,7 +66,7 @@ const tryAndSave = () => {
 // catch 'inputChange'
 ipcMain.on('inputChange', function(event, item) {
   if (!current_character) {
-    console.log('failed to change character: no character set')
+    mainWindow.webContents.send('display message', {nature: 'error', message: "failed to change character: no character set"})
     return false;
   }
   // HERE needs to populate this guy.
@@ -93,16 +93,14 @@ ipcMain.on('inputChange', function(event, item) {
   }
 })
 
-ipcMain.on('loadChar', function(event) {
+ipcMain.on('loadAllChars', function(event) {
   console.log('load character')
   const charNames = store.getAllCharacterNames(); // works
-  console.log('charNames', charNames)
-  // send the names along to the index.js
-  // create a div with ul / li to display the characters => scrollable? Search?
-  // onClick => send another message to here, with the name of the character.
+  mainWindow.webContents.send('display characters names', charNames)
   // load the character and set the current character to this guy.
+  // set the inputs
   // REFRESH!!!
-})
+})   
 
 ipcMain.on('createChar', function(event) {
   console.log('create character')
@@ -118,6 +116,10 @@ ipcMain.on('saveChar', function(event) {
 })
 
 ipcMain.on('try and save', tryAndSave)
+
+ipcMain.on('loadChar', function(event, item) {
+  console.log(item)
+})
 
 app.on('ready', createWindow)
 
