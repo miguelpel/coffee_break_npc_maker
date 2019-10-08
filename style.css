@@ -72,7 +72,7 @@ li:hover {
 .export_container {
     margin-top: 8px;
     display:flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .quirk_input_container {
@@ -104,6 +104,7 @@ li:hover {
     margin: 5px 0;
     padding: 3px;
     border: 1px dashed red;
+    display: none;
 }
 
 #script_window {
@@ -121,4 +122,9 @@ li:hover {
 
 #export_button {
     margin-left: 5px; 
+}
+
+#erase_button {
+    background: rgb(171, 0, 0);
+    justify-self: flex-start;
 }

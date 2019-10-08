@@ -51,6 +51,12 @@ function onCharacterNamePressed(name) {
     deleteCharactersNames()
 }
 
+function displayCharacter(character) {
+    console.log(character)
+    const name_input = document.getElementById('character_name')
+    name_input.value = character.name
+}
+
 function tryAutoSave() {
     ipcRenderer.send('try and save')
 }
@@ -73,7 +79,6 @@ function loadCharacters(names) {
         if (i + 1 !== names.length) {
             li.style.borderBottom = '1px solid #cccccc';
         }
-        // add event listener => onClick => load THIS character ("by name")
         li.addEventListener('click', (e) => onCharacterNamePressed(name))
         ul.appendChild(li)
     })
@@ -97,7 +102,9 @@ loadButton.addEventListener('click', onLoadButtonPressed)
 exportButton.addEventListener('click', onExportButtonPressed)
 saveButton.addEventListener('click', onSaveButtonPressed)
 
-timer = setInterval(tryAutoSave, 1000)
+/////////////// TIMER
+
+timer = setInterval(tryAutoSave, 5000)
 
 /////////////// MESSAGES FROM MAIN
 
@@ -107,6 +114,10 @@ ipcRenderer.on('display message', function(event, item) {
 
 ipcRenderer.on('display characters names', function(event, item) {
     loadCharacters(item)
+})
+
+ipcRenderer.on('display character', function(event, item) {
+    displayCharacter(item)
 })
 
 /////////////// TEST FOR THE DIV WITH CHARS NAMES

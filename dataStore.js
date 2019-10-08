@@ -27,12 +27,11 @@ class DataStore extends Store {
     getCharacters() {
         // get all the characters
         this.characters = this.get('characters') || {}
-        return this
+        return this.characters
     }
 
     getAllCharacterNames() {
         const nameArr = [];
-        console.log(Object.keys(this.characters))
         Object.keys(this.characters).forEach(charName => nameArr.push(charName))
         return nameArr;
     }

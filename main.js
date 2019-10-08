@@ -58,15 +58,27 @@ const tryAndSave = () => {
     mainWindow.webContents.send('display message', {nature: 'error', message: "There's no Character set"})
     return false;
   }
-  const charName = current_character.name
-  store.saveCharacter({name: charName})
+  // const charName = current_character.name
+  store.saveCharacter(current_character)
   mainWindow.webContents.send('display message', {nature: 'info', message: "Character Saved"})
+}
+
+const setCharacterByName = (name) => {
+  console.log(name)
+  // print name here
+  current_character = store.getCharacterByName(name) // works, but only get the name
+  mainWindow.webContents.send('display character', current_character)
+  // print the whole character
+  // displayCurrentCharacterScript()
 }
 
 // catch 'inputChange'
 ipcMain.on('inputChange', function(event, item) {
   if (!current_character) {
     mainWindow.webContents.send('display message', {nature: 'error', message: "failed to change character: no character set"})
+    // look if there's a name in name input.
+    // if yes, check the name of the character,
+    // and create it
     return false;
   }
   // HERE needs to populate this guy.
@@ -97,9 +109,6 @@ ipcMain.on('loadAllChars', function(event) {
   console.log('load character')
   const charNames = store.getAllCharacterNames(); // works
   mainWindow.webContents.send('display characters names', charNames)
-  // load the character and set the current character to this guy.
-  // set the inputs
-  // REFRESH!!!
 })   
 
 ipcMain.on('createChar', function(event) {
@@ -118,7 +127,10 @@ ipcMain.on('saveChar', function(event) {
 ipcMain.on('try and save', tryAndSave)
 
 ipcMain.on('loadChar', function(event, item) {
-  console.log(item)
+  setCharacterByName(item)
+  // load the character and set the current character to this guy.
+  // set the inputs
+  // REFRESH!!!
 })
 
 app.on('ready', createWindow)
