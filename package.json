@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/miguelpel/coffee_break_npc_maker#readme",
   "devDependencies": {
-    "electron": "^6.0.9"
+    "electron": "^15.5.5"
   },
   "dependencies": {
     "electron-store": "^5.0.0"
